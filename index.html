@@ -1,0 +1,1127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OFM Management | Professional Creator Agency</title>
+    <link rel="icon" type="image/x-icon" href="icon.jpg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy: #0F172A;
+            --dark-blue: #1E293B;
+            --medium-blue: #334155;
+            --light-blue: #475569;
+            --accent: #3B82F6;
+            --accent-light: #60A5FA;
+            --white: #F8FAFC;
+            --light-gray: #CBD5E1;
+            --dark-gray: #64748B;
+            --gradient-dark: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+            --gradient-accent: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%);
+            --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.3);
+            --shadow-md: 0 10px 20px rgba(0, 0, 0, 0.2);
+            --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            background-color: var(--navy);
+            color: var(--light-gray);
+            line-height: 1.7;
+            font-family: 'Inter', sans-serif;
+            font-weight: 400;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        h1, h2, h3, h4, .logo, .nav-links a {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 25px;
+        }
+        
+        /* Header */
+        header {
+            background-color: rgba(15, 23, 42, 0.98);
+            backdrop-filter: blur(15px);
+            padding: 1.4rem 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        header.scrolled {
+            padding: 1rem 0;
+            box-shadow: var(--shadow-md);
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 1.6rem;
+            color: var(--white);
+            text-decoration: none;
+        }
+        
+        .logo-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--accent);
+            transition: transform 0.5s ease;
+        }
+        
+        .logo:hover .logo-icon {
+            transform: rotate(15deg);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 3rem;
+        }
+        
+        .nav-links a {
+            color: var(--light-gray);
+            text-decoration: none;
+            font-size: 1rem;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 8px 0;
+            font-weight: 600;
+        }
+        
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-accent);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent-light);
+        }
+        
+        .nav-links a:hover::before {
+            width: 100%;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.8rem;
+            cursor: pointer;
+            z-index: 1001;
+            transition: transform 0.3s ease;
+        }
+        
+        .mobile-menu-btn:hover {
+            transform: scale(1.1);
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 200px 0 140px;
+            background: var(--gradient-dark);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -300px;
+            right: -300px;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.08) 0%, rgba(59, 130, 246, 0) 70%);
+            border-radius: 50%;
+            animation: pulse 8s infinite alternate;
+        }
+        
+        .hero-content {
+            max-width: 750px;
+            position: relative;
+            z-index: 2;
+            animation: fadeInUp 1s ease-out;
+        }
+        
+        .hero-subtitle {
+            color: var(--accent-light);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 1.1rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 1.8rem;
+            display: block;
+            opacity: 0.9;
+        }
+        
+        .hero-title {
+            font-size: 3.8rem;
+            line-height: 1.1;
+            margin-bottom: 2rem;
+            background: linear-gradient(to right, var(--white) 0%, var(--accent-light) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .hero-description {
+            font-size: 1.25rem;
+            color: var(--dark-gray);
+            margin-bottom: 3rem;
+            max-width: 650px;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+        
+        .highlight-box {
+            display: inline-block;
+            background: rgba(59, 130, 246, 0.08);
+            border: 1px solid rgba(96, 165, 250, 0.2);
+            padding: 1.5rem 2rem;
+            margin-top: 2.5rem;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            animation: fadeIn 1.5s ease-out;
+        }
+        
+        .highlight-box:hover {
+            border-color: rgba(96, 165, 250, 0.4);
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        /* About Section */
+        .about {
+            padding: 120px 0;
+            background-color: var(--dark-blue);
+            position: relative;
+        }
+        
+        .section-title {
+            font-size: 2.8rem;
+            margin-bottom: 1.2rem;
+            color: var(--white);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: var(--gradient-accent);
+            border-radius: 2px;
+        }
+        
+        .section-subtitle {
+            color: var(--dark-gray);
+            font-size: 1.2rem;
+            max-width: 650px;
+            margin-bottom: 4rem;
+            line-height: 1.7;
+            font-weight: 300;
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        
+        .about-text p {
+            font-size: 1.1rem;
+            color: var(--light-gray);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+        
+        .founders {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        
+        .founder-card {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 16px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.4s ease;
+        }
+        
+        .founder-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(96, 165, 250, 0.3);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .founder-card h3 {
+            font-size: 1.4rem;
+            color: var(--white);
+            margin-bottom: 0.5rem;
+        }
+        
+        .founder-role {
+            color: var(--accent-light);
+            font-weight: 500;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+        
+        /* Services */
+        .services {
+            padding: 120px 0;
+            background-color: var(--navy);
+            position: relative;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 3rem;
+        }
+        
+        .service-card {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 16px;
+            padding: 3rem 2.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+        
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gradient-accent);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.5s ease;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-15px);
+            border-color: rgba(96, 165, 250, 0.3);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .service-icon {
+            font-size: 2.8rem;
+            margin-bottom: 2rem;
+            color: var(--accent);
+            transition: transform 0.5s ease;
+        }
+        
+        .service-card:hover .service-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+        
+        .service-card h3 {
+            font-size: 1.6rem;
+            margin-bottom: 1.2rem;
+            color: var(--white);
+        }
+        
+        .service-card p {
+            color: var(--dark-gray);
+            font-size: 1.05rem;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+        
+        /* Contact Section */
+        .contact {
+            padding: 120px 0;
+            background-color: var(--dark-blue);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+        }
+        
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 4rem;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        
+        .contact-method {
+            display: flex;
+            align-items: center;
+            gap: 1.8rem;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.4s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+        
+        .contact-method::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+            transition: left 0.7s ease;
+        }
+        
+        .contact-method:hover::after {
+            left: 100%;
+        }
+        
+        .contact-method:hover {
+            transform: translateY(-8px);
+            border-color: rgba(96, 165, 250, 0.4);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .contact-icon {
+            width: 64px;
+            height: 64px;
+            background: var(--gradient-accent);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.8rem;
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-method:hover .contact-icon {
+            transform: scale(1.05) rotate(5deg);
+        }
+        
+        .contact-details h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.6rem;
+            color: var(--white);
+        }
+        
+        .contact-details a, .contact-details .copy-email {
+            color: var(--accent-light);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            display: inline-block;
+            cursor: pointer;
+        }
+        
+        .contact-details a:hover, .contact-details .copy-email:hover {
+            color: var(--white);
+        }
+        
+        .contact-details p {
+            color: var(--dark-gray);
+            font-size: 0.95rem;
+            margin-top: 0.5rem;
+            font-weight: 300;
+        }
+        
+        .info-box {
+            background: rgba(59, 130, 246, 0.06);
+            border-radius: 16px;
+            padding: 2.5rem;
+            border: 1px solid rgba(96, 165, 250, 0.15);
+            height: 100%;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        .info-box:hover {
+            border-color: rgba(96, 165, 250, 0.3);
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .info-box h3 {
+            color: var(--white);
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .info-box p {
+            color: var(--dark-gray);
+            margin-bottom: 1.2rem;
+            font-size: 1.05rem;
+            line-height: 1.7;
+            font-weight: 300;
+        }
+        
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--gradient-accent);
+            color: var(--white);
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            box-shadow: var(--shadow-lg);
+            z-index: 9999;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            max-width: 350px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+        }
+        
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: rgba(5, 12, 24, 1);
+            padding: 5rem 0 2.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2.5rem;
+            margin-bottom: 4rem;
+        }
+        
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 1.6rem;
+            color: var(--white);
+            text-decoration: none;
+        }
+        
+        .footer-logo img {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--accent);
+            transition: transform 0.5s ease;
+        }
+        
+        .footer-logo:hover img {
+            transform: rotate(15deg);
+        }
+        
+        .footer-tagline {
+            color: var(--dark-gray);
+            font-size: 1.2rem;
+            text-align: center;
+            max-width: 600px;
+            line-height: 1.7;
+            font-weight: 300;
+        }
+        
+        .copyright {
+            padding-top: 2.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            text-align: center;
+            color: var(--dark-gray);
+            font-size: 0.95rem;
+            font-weight: 300;
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 0.5;
+            }
+            100% {
+                transform: scale(1.1);
+                opacity: 0.8;
+            }
+        }
+        
+        /* Responsive - Mobile First Approach */
+        @media (max-width: 1024px) {
+            .hero-title {
+                font-size: 3.2rem;
+            }
+            
+            .section-title {
+                font-size: 2.5rem;
+            }
+            
+            .about-content {
+                gap: 3rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 300px;
+                height: 100vh;
+                background-color: rgba(15, 23, 42, 0.98);
+                flex-direction: column;
+                padding: 120px 40px 40px;
+                transition: right 0.5s ease;
+                box-shadow: -10px 0 40px rgba(0, 0, 0, 0.4);
+                z-index: 1000;
+                backdrop-filter: blur(15px);
+                border-left: 1px solid rgba(255, 255, 255, 0.05);
+            }
+            
+            .nav-links.active {
+                right: 0;
+            }
+            
+            .hero {
+                padding: 160px 0 100px;
+            }
+            
+            .hero-title {
+                font-size: 2.8rem;
+                line-height: 1.2;
+            }
+            
+            .hero-description {
+                font-size: 1.15rem;
+            }
+            
+            .about, .services, .contact {
+                padding: 100px 0;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            
+            .service-card {
+                padding: 2.5rem 2rem;
+            }
+            
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            
+            .contact-method {
+                padding: 1.8rem;
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .contact-icon {
+                width: 56px;
+                height: 56px;
+                font-size: 1.5rem;
+            }
+            
+            .container {
+                padding: 0 20px;
+            }
+            
+            .highlight-box {
+                padding: 1.25rem 1.5rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2.4rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1rem;
+                letter-spacing: 3px;
+            }
+            
+            .service-card {
+                padding: 2rem 1.8rem;
+            }
+            
+            .service-icon {
+                font-size: 2.5rem;
+            }
+            
+            .service-card h3 {
+                font-size: 1.4rem;
+            }
+            
+            .contact-method {
+                padding: 1.5rem;
+            }
+            
+            .toast {
+                left: 20px;
+                right: 20px;
+                max-width: none;
+                text-align: center;
+            }
+            
+            .founder-card {
+                padding: 1.5rem;
+            }
+        }
+        
+        @media (max-width: 360px) {
+            .hero-title {
+                font-size: 2.2rem;
+            }
+            
+            .service-card {
+                padding: 1.8rem 1.5rem;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container nav-container">
+            <a href="#home" class="logo">
+                <img src="icon.jpg" alt="OFM Management Logo" class="logo-icon">
+                <span>OFM Management</span>
+            </a>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#about" class="nav-link">About Us</a></li>
+                <li><a href="#services" class="nav-link">Services</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <span class="hero-subtitle">Professional Management Agency</span>
+                <h1 class="hero-title">Strategic Management for Elite Content Creators</h1>
+                <p class="hero-description">We are a specialized management agency dedicated to maximizing the potential of established content creators through strategic growth, brand development, and sustainable revenue optimization.</p>
+                
+                <div class="highlight-box">
+                    <p><strong>Professional Note:</strong> This platform is exclusively for management services. No content or third-party services are offered or sold through this website.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <h2 class="section-title">Our Agency</h2>
+            <p class="section-subtitle">A dedicated team of professionals committed to elevating digital careers through strategic management and personalized support.</p>
+            
+            <div class="about-content">
+                <div class="about-text">
+                    <p>OFM Management is founded by two industry professionals with extensive experience in digital content strategy and creator management. Our approach combines business acumen with deep understanding of the digital landscape.</p>
+                    <p>We work exclusively with established creators who are ready to scale their businesses, protect their brands, and build sustainable careers in the digital space.</p>
+                    <p>Our methodology is built on transparency, discretion, and results-driven strategies that prioritize long-term success over short-term gains.</p>
+                </div>
+                
+                <div class="founders">
+                    <div class="founder-card">
+                        <h3>Jnn.ded</h3>
+                        <div class="founder-role">Co-Founder & Strategy Director</div>
+                        <p>Specializes in growth strategy, audience development, and digital marketing with over 5 years of experience in creator management.</p>
+                    </div>
+                    
+                    <div class="founder-card">
+                        <h3>Karans Confidential</h3>
+                        <div class="founder-role">Co-Founder & Operations Director</div>
+                        <p>Focuses on business operations, contract negotiations, and privacy management, ensuring our clients' interests are always protected.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <h2 class="section-title">Our Services</h2>
+            <p class="section-subtitle">Comprehensive management solutions designed for creators at different stages of their careers.</p>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Growth Strategy</h3>
+                    <p>Customized growth plans including audience analysis, content optimization, platform diversification, and revenue stream development.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-bullseye"></i>
+                    </div>
+                    <h3>Brand Development</h3>
+                    <p>Strategic brand positioning, visual identity development, and long-term brand equity building across multiple platforms.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3>Partnership Management</h3>
+                    <p>Identification, negotiation, and management of brand partnerships, collaborations, and sponsorship opportunities.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Privacy & Security</h3>
+                    <p>Comprehensive digital security protocols, privacy management, and identity protection services for high-profile creators.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-file-contract"></i>
+                    </div>
+                    <h3>Contract Review</h3>
+                    <p>Professional review and negotiation of contracts, agreements, and legal documents to protect your interests.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-chart-pie"></i>
+                    </div>
+                    <h3>Financial Planning</h3>
+                    <p>Revenue optimization, financial tracking, tax planning, and long-term wealth building strategies for digital entrepreneurs.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2 class="section-title">Contact Us</h2>
+            <p class="section-subtitle">Reach out to schedule a confidential consultation or discuss potential collaboration.</p>
+            
+            <div class="contact-container">
+                <div class="contact-info">
+                    <div class="contact-method" id="emailContact">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Business Email</h3>
+                            <div class="copy-email" data-email="lustremanagements@gmail.com">lustremanagements@gmail.com</div>
+                            <p>Primary communication channel for all business inquiries</p>
+                            <p class="copy-hint"><small>Click to copy email address</small></p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-method" onclick="window.open('https://instagram.com/jnn.ded', '_blank')">
+                        <div class="contact-icon">
+                            <i class="fab fa-instagram"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Jnn.ded</h3>
+                            <a>Instagram Business Profile</a>
+                            <p>Co-Founder & Strategy Director - For strategic inquiries</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-method" onclick="window.open('https://instagram.com/karansconfidentials', '_blank')">
+                        <div class="contact-icon">
+                            <i class="fas fa-lock"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Karans Confidential</h3>
+                            <a>Confidential Instagram Channel</a>
+                            <p>Co-Founder & Operations Director - For secure communications</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="info-box">
+                    <h3><i class="fas fa-info-circle"></i> Process & Protocol</h3>
+                    <p>Initial consultations are scheduled via email and conducted through secure channels to ensure complete confidentiality.</p>
+                    <p>We only work with established creators who have a verifiable track record and clear growth objectives.</p>
+                    <p>All communications are encrypted and subject to strict non-disclosure agreements to protect your privacy.</p>
+                    <p>Response time for initial inquiries is typically 24-48 hours during business days.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <a href="#home" class="footer-logo">
+                    <img src="icon.jpg" alt="OFM Management Logo">
+                    <span>OFM Management</span>
+                </a>
+                <p class="footer-tagline">Professional management for exclusive content creators. Focused on strategic growth, brand protection, and sustainable success in the digital landscape.</p>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; <span id="currentYear"></span> OFM Management. All rights reserved. This platform serves exclusively for professional management services.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastMessage">Email copied to clipboard!</span>
+    </div>
+    
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            mobileMenuBtn.innerHTML = navLinks.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+        
+        // Set current year in footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+            
+            // Update active nav link
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if(window.scrollY >= (sectionTop - 150)) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if(link.getAttribute('href').substring(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+        
+        // Copy email to clipboard
+        const emailElement = document.querySelector('.copy-email');
+        const toast = document.getElementById('toast');
+        const toastMessage = document.getElementById('toastMessage');
+        
+        emailElement.addEventListener('click', () => {
+            const email = emailElement.getAttribute('data-email');
+            
+            // Copy to clipboard
+            navigator.clipboard.writeText(email).then(() => {
+                // Show success toast
+                toastMessage.textContent = 'Email copied to clipboard!';
+                toast.classList.add('show');
+                
+                // Hide toast after 3 seconds
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                }, 3000);
+            }).catch(err => {
+                // Fallback for older browsers
+                const textArea = document.createElement('textarea');
+                textArea.value = email;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                
+                // Show success toast
+                toastMessage.textContent = 'Email copied to clipboard!';
+                toast.classList.add('show');
+                
+                // Hide toast after 3 seconds
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                }, 3000);
+            });
+        });
+        
+        // Fade in elements on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        // Observe all interactive elements
+        document.querySelectorAll('.service-card, .contact-method, .info-box, .founder-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+        
+        // Initialize with header scrolled if page is not at top
+        if (window.scrollY > 50) {
+            document.getElementById('header').classList.add('scrolled');
+        }
+        
+        // Mobile touch improvements
+        document.addEventListener('touchstart', function() {}, {passive: true});
+    </script>
+</body>
+</html>
